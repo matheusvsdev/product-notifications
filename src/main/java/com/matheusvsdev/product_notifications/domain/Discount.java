@@ -3,11 +3,13 @@ package com.matheusvsdev.product_notifications.domain;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_discounted_product")
-public class DiscountedProduct {
+@Table(name = "tb_discount")
+public class Discount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,10 +18,13 @@ public class DiscountedProduct {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public DiscountedProduct() {
+    @OneToMany(mappedBy = "discount")
+    private List<Product> products = new ArrayList<>();
+
+    public Discount() {
     }
 
-    public DiscountedProduct(Long id, Double price, LocalDate startDate, LocalDate endDate) {
+    public Discount(Long id, Double price, LocalDate startDate, LocalDate endDate) {
         this.id = id;
         this.price = price;
         this.startDate = startDate;
@@ -58,11 +63,15 @@ public class DiscountedProduct {
         this.endDate = endDate;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
 
-        DiscountedProduct that = (DiscountedProduct) o;
+        Discount that = (Discount) o;
         return Objects.equals(id, that.id);
     }
 

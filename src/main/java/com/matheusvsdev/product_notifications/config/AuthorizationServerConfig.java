@@ -69,6 +69,9 @@ public class AuthorizationServerConfig {
     @Order(2) // Define a ordem do filtro na cadeia de segurança
     public SecurityFilterChain asSecurityFilterChain(HttpSecurity http) throws Exception {
 
+        // Aplica a configuração padrão de segurança do servidor de autorização
+        OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
+
         // Configura o endpoint do token
         // @formatter:off
         http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
@@ -101,20 +104,16 @@ public class AuthorizationServerConfig {
     // Repositório de clientes registrados em memória
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
-
-        // Configuração de um cliente registrado com suas credenciais e permissões
-        // @formatter:off
         RegisteredClient registeredClient = RegisteredClient
                 .withId(UUID.randomUUID().toString())
                 .clientId(clientId)
                 .clientSecret(passwordEncoder.encode(clientSecret))
                 .scope("read")
                 .scope("write")
-                .authorizationGrantType(new AuthorizationGrantType("password"))
+                .authorizationGrantType(AuthorizationGrantType.PASSWORD)
                 .tokenSettings(tokenSettings())
                 .clientSettings(clientSettings())
                 .build();
-        // @formatter:on
 
         return new InMemoryRegisteredClientRepository(registeredClient);
     }
