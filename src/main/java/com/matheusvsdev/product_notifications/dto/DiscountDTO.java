@@ -4,24 +4,24 @@ import com.matheusvsdev.product_notifications.domain.Discount;
 
 import java.time.LocalDate;
 
-public class ResponseDiscountDTO {
+public class DiscountDTO {
 
     private Long id;
     private Double price;
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public ResponseDiscountDTO() {
+    public DiscountDTO() {
     }
 
-    public ResponseDiscountDTO(Long id, Double price, LocalDate startDate, LocalDate endDate) {
+    public DiscountDTO(Long id, Double price, LocalDate startDate, LocalDate endDate) {
         this.id = id;
         this.price = price;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public ResponseDiscountDTO(Discount discount) {
+    public DiscountDTO(Discount discount) {
         if (discount != null) {
             this.id = discount.getId();
             this.price = discount.getPrice();

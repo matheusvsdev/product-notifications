@@ -1,8 +1,6 @@
 package com.matheusvsdev.product_notifications.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.matheusvsdev.product_notifications.domain.Category;
-import com.matheusvsdev.product_notifications.domain.Discount;
 import com.matheusvsdev.product_notifications.domain.Product;
 
 import java.util.HashSet;
@@ -17,7 +15,7 @@ public class ResponseProductDTO {
     private String title;
     private String description;
     private Double price;
-    private ResponseDiscountDTO discount;
+    private DiscountDTO discount;
     private Set<CategoryDTO> category = new HashSet<>();
 
     public ResponseProductDTO() {
@@ -28,7 +26,7 @@ public class ResponseProductDTO {
                               String title,
                               String description,
                               Double price,
-                              ResponseDiscountDTO discount) {
+                              DiscountDTO discount) {
         this.id = id;
         this.img_url = img_url;
         this.title = title;
@@ -45,7 +43,7 @@ public class ResponseProductDTO {
         this.price = product.getPrice();
 
         if (product.getDiscount() != null) {
-            this.discount = new ResponseDiscountDTO(product.getDiscount());
+            this.discount = new DiscountDTO(product.getDiscount());
         } else {
             this.discount = null;
         }
@@ -76,7 +74,7 @@ public class ResponseProductDTO {
         return price;
     }
 
-    public ResponseDiscountDTO getDiscount() {
+    public DiscountDTO getDiscount() {
         return discount;
     }
 
