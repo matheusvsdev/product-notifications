@@ -28,6 +28,12 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(name = "tb_product_subcategory",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "subcategory_id"))
+    private Set<SubCategory> subcategories = new HashSet<>();
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "discount_id")
     private Discount discount;
@@ -90,6 +96,10 @@ public class Product {
 
     public void setDiscount(Discount discount) {
         this.discount = discount;
+    }
+
+    public Set<SubCategory> getSubcategories() {
+        return subcategories;
     }
 
     @Override

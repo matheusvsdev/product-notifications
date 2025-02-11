@@ -16,6 +16,9 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
+    @OneToMany(mappedBy = "category")
+    private List<SubCategory> subCategories = new ArrayList<>();
+
     public Category() {
     }
 
@@ -38,6 +41,10 @@ public class Category {
 
     public Set<Product> getProducts() {
         return products;
+    }
+
+    public List<SubCategory> getSubCategories() {
+        return subCategories;
     }
 
     @Override

@@ -7,9 +7,16 @@ INSERT INTO tb_role (authority) VALUES ('ROLE_CLIENT');
 INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 
-INSERT INTO tb_category (description) VALUES ('NINTENDO');
-INSERT INTO tb_category (description) VALUES ('PLAYSTATION');
-INSERT INTO tb_category (description) VALUES ('XBOX');
+INSERT INTO tb_category (description) VALUES ('Books');
+INSERT INTO tb_category (description) VALUES ('Games e Console');
+INSERT INTO tb_category (description) VALUES ('PC');
+
+INSERT INTO tb_subcategory (description, category_id) VALUES ('Nintendo Wii U', 2);
+INSERT INTO tb_subcategory (description, category_id) VALUES ('Nintendo Switch', 2);
+INSERT INTO tb_subcategory (description, category_id) VALUES ('PlayStation 4', 2);
+INSERT INTO tb_subcategory (description, category_id) VALUES ('PlayStation 5', 2);
+INSERT INTO tb_subcategory (description, category_id) VALUES ('Xbox One S/X', 2);
+INSERT INTO tb_subcategory (description, category_id) VALUES ('Xbox Series S/X', 2);
 
 INSERT INTO tb_discount (start_date, end_date, price) VALUES ( '2025-02-03', '2025-02-20', 249.99);
 INSERT INTO tb_discount (start_date, end_date, price) VALUES ( '2025-02-10', '2025-03-01', 199.99);
@@ -27,15 +34,32 @@ INSERT INTO tb_product (img_url, title, description, price, discount_id) VALUES 
 INSERT INTO tb_product (img_url, title, description, price, discount_id) VALUES ('https://m.media-amazon.com/images/I/71MGlZZqIzL._AC_UF1000,1000_QL80_.jpg', 'Forza Horizon 5', 'Sua Aventura Definitiva de Horizon o aguarda! Explore as paisagens do mundo aberto vibrante e em constante evolução do México, com uma ação de direção divertida e ilimitada em centenas dos melhores carros do mundo.', 239.00, null);
 INSERT INTO tb_product (img_url, title, description, price, discount_id) VALUES ('https://m.media-amazon.com/images/I/81qsBBTCRjL._AC_UF1000,1000_QL80_.jpg', 'Battlefield 2042', 'Num futuro próximo mergulhado no caos, adapta-se e supera em campos de batalha dinâmicos com a ajuda do teu esquadrão e de um arsenal de ponta. Com suporte para até 128 jogadoresnos consoles de nova geração (geração antiga 64 jogadores), Battlefield 2042 traz consigo uma escala sem precedentes em vastos campos de batalha globais. Os jogadores irão participar em diversas experiências massivas, desde modos multijogador atualizados como Conquest e Breakthrough até ao novo Hazard Zone.', 98.99, null);
 
-INSERT INTO tb_product_category (product_id, category_id) VALUES (1, 1);
-INSERT INTO tb_product_category (product_id, category_id) VALUES (2, 1);
-INSERT INTO tb_product_category (product_id, category_id) VALUES (3, 1);
-INSERT INTO tb_product_category (product_id, category_id) VALUES (4, 1);
+INSERT INTO tb_product_category (product_id, category_id) VALUES (1, 2);
+INSERT INTO tb_product_category (product_id, category_id) VALUES (2, 2);
+INSERT INTO tb_product_category (product_id, category_id) VALUES (3, 2);
+INSERT INTO tb_product_category (product_id, category_id) VALUES (4, 2);
 INSERT INTO tb_product_category (product_id, category_id) VALUES (5, 2);
 INSERT INTO tb_product_category (product_id, category_id) VALUES (6, 2);
 INSERT INTO tb_product_category (product_id, category_id) VALUES (7, 2);
 INSERT INTO tb_product_category (product_id, category_id) VALUES (8, 2);
-INSERT INTO tb_product_category (product_id, category_id) VALUES (9, 3);
-INSERT INTO tb_product_category (product_id, category_id) VALUES (10, 3);
-INSERT INTO tb_product_category (product_id, category_id) VALUES (11, 3);
-INSERT INTO tb_product_category (product_id, category_id) VALUES (12, 3);
+INSERT INTO tb_product_category (product_id, category_id) VALUES (9, 2);
+INSERT INTO tb_product_category (product_id, category_id) VALUES (10, 2);
+INSERT INTO tb_product_category (product_id, category_id) VALUES (11, 2);
+INSERT INTO tb_product_category (product_id, category_id) VALUES (12, 2);
+
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (1, 2);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (2, 2);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (3, 2);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (4, 2);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (5, 4);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (6, 4);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (7, 4);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (8, 4);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (9, 5);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (9, 6);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (10, 5);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (10, 6);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (11, 5);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (11, 6);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (12, 5);
+INSERT INTO tb_product_subcategory (product_id, subcategory_id) VALUES (12, 6);

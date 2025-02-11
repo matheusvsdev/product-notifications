@@ -16,7 +16,7 @@ public class ResponseProductDTO {
     private String description;
     private Double price;
     private DiscountDTO discount;
-    private Set<CategoryDTO> category = new HashSet<>();
+    private Set<CategoryDTO> categories = new HashSet<>();
 
     public ResponseProductDTO() {
     }
@@ -48,9 +48,9 @@ public class ResponseProductDTO {
             this.discount = null;
         }
 
-        this.category = new HashSet<>(product.getCategories())
+        this.categories = product.getCategories()
                 .stream()
-                .map(CategoryDTO::new)
+                .map(category -> new CategoryDTO(category, product))
                 .collect(Collectors.toSet());
     }
 
@@ -78,7 +78,7 @@ public class ResponseProductDTO {
         return discount;
     }
 
-    public Set<CategoryDTO> getCategory() {
-        return category;
+    public Set<CategoryDTO> getCategories() {
+        return categories;
     }
 }
