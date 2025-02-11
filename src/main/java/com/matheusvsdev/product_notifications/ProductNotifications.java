@@ -9,5 +9,4 @@ public class ProductNotifications {
     public static void main(String[] args) {
         SpringApplication.run(ProductNotifications.class, args);
     }
-
 }
