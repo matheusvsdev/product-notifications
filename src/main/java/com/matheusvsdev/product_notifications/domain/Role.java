@@ -3,12 +3,11 @@ package com.matheusvsdev.product_notifications.domain;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_role")
-public class Role implements GrantedAuthority, Serializable {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +27,8 @@ public class Role implements GrantedAuthority, Serializable {
         return id;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -37,16 +36,24 @@ public class Role implements GrantedAuthority, Serializable {
         return authority;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Role role = (Role) o;
-        return Objects.equals(authority, role.authority);
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(authority);
+        return Objects.hash(authority); // Gera um hash com base na autoridade
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Role other = (Role) obj;
+        return Objects.equals(authority, other.authority); // Compara as autoridades
     }
 }

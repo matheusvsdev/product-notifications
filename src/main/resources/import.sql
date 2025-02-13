@@ -1,10 +1,10 @@
-INSERT INTO tb_user (full_name, email, password) VALUES ('John Green', 'joao@example.com', '123456');
-INSERT INTO tb_user (full_name, email, password) VALUES ('Marie Brown', 'marie@example.com', '123456');
+INSERT INTO tb_user (full_name, email, password) VALUES ('John Green', 'joao@example.com', '$2a$10$BXQu61uGyil9Pp3QsNVRjeF9Bu3L3PF/DDstRIWIrnINiEKq30M2u');
+INSERT INTO tb_user (full_name, email, password) VALUES ('Marie Brown', 'marie@example.com', '$2a$10$BXQu61uGyil9Pp3QsNVRjeF9Bu3L3PF/DDstRIWIrnINiEKq30M2u');
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
 INSERT INTO tb_role (authority) VALUES ('ROLE_CLIENT');
 
-INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 2);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 
 INSERT INTO tb_category (description) VALUES ('Books');

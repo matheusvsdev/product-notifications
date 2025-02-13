@@ -6,16 +6,16 @@ import com.matheusvsdev.product_notifications.dto.ResponseUserDTO;
 import com.matheusvsdev.product_notifications.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
@@ -24,7 +24,7 @@ public class UserService implements UserDetailsService {
         User user = new User();
         user.setFullName(createUserDTO.getFullName());
         user.setEmail(createUserDTO.getEmail());
-        user.setPassword(createUserDTO.getPassword());
+        user.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));
 
         return new ResponseUserDTO(userRepository.save(user));
     }
@@ -34,10 +34,5 @@ public class UserService implements UserDetailsService {
         Page<User> users = userRepository.findAll(pageable);
 
         return users.map(ResponseUserDTO::new);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
     }
 }
