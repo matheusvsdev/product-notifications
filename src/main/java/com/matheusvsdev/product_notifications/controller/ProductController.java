@@ -1,7 +1,7 @@
 package com.matheusvsdev.product_notifications.controller;
 
 import com.matheusvsdev.product_notifications.dto.ResponseProductDTO;
-import com.matheusvsdev.product_notifications.service.ProductClickTracker;
+import com.matheusvsdev.product_notifications.service.NotificationService;
 import com.matheusvsdev.product_notifications.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ public class ProductController {
     private ProductService productService;
 
     @Autowired
-    private ProductClickTracker productClickTracker;
+    private NotificationService productClickTracker;
 
     private final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
@@ -36,7 +36,6 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ResponseProductDTO> getProductById(@PathVariable Long id) {
         ResponseProductDTO productDTO = productService.findById(id);
-        productClickTracker.productClicked(id, productDTO.getTitle(), productDTO.getImg_url());
         return ResponseEntity.ok().body(productDTO);
     }
 }

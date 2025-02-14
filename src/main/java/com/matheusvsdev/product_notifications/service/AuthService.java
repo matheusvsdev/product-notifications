@@ -46,7 +46,7 @@ public class AuthService {
 
         String token = tokenService.generateToken((User) authentication.getPrincipal());
         String type = "Bearer";
-        Instant expiresAt = LocalDateTime.now().plusHours(1).toInstant(ZoneOffset.UTC);
+        Instant expiresAt = LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
 
         return new LoginResponseDTO(token, type, expiresAt);
     }

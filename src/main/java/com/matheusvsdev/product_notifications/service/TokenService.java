@@ -22,6 +22,7 @@ public class TokenService {
 
     public String generateToken(User user) {
         try {
+            System.out.println("Secret used for token generation: " + secret);
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("auth-api")
@@ -38,6 +39,7 @@ public class TokenService {
 
     public String validateToken(String token) {
         try {
+            System.out.println("Secret used for token validation: " + secret);
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
                     .withIssuer("auth-api")
@@ -45,11 +47,12 @@ public class TokenService {
                     .verify(token)
                     .getSubject();
         } catch (JWTVerificationException exception) {
-            return "";
+            throw new RuntimeException("JWT verification failed", exception);
         }
     }
 
+
     private Instant genExpirationDate() {
-        return LocalDateTime.now().plusHours(1).toInstant(ZoneOffset.UTC);
+        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
 }

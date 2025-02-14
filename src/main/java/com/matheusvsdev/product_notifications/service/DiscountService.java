@@ -19,12 +19,20 @@ public class DiscountService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private NotificationService notificationService;
+
     @Transactional
     public ResponseProductDTO insertDiscount(Long id, DiscountDTO dto) {
         Product product = productRepository.getReferenceById(id);
         product.setDiscount(applyDiscount(dto));
 
         productRepository.save(product);
+
+        notificationService.sendNotification(
+                product.getImgUrl(),
+                product.getTitle(),
+                product.getDiscount().getPrice());
 
         return new ResponseProductDTO(product);
     }

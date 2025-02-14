@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         user.setPassword(result.getFirst().getPassword());
 
         for (UserDetailsProjection userDetails : result) {
-            user.addRole(new Role(userDetails.getRoleId(), userDetails.getAuthorities()));
+            user.addRole(new Role(userDetails.getRoleId(), userDetails.getAuthority()));
         }
         return user;
     }
